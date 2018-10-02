@@ -1,0 +1,36 @@
+<!doctype HTML>
+<html>
+	<head>
+		<title>write big</title>
+		<meta charset="utf-8">
+		<meta name='description' content=''>
+		<script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script>
+			$(document).ready(() => {
+				$("#i").focus().val("").on("input", () => $("#write").text($("#i").val()));
+				$(window).on("click", () => $("#i").focus());
+				$("form").submit((e) => {
+					e.preventDefault();
+					$.ajax({
+						url: "/try",
+						data: { key: $("#i").val() },
+						method: "POST",
+						success: (res) => {
+							if(res){
+								console.log(res);
+								$("#big").html(res);
+							}
+						}
+					});
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<form style="opacity:0; position:absolute">
+			<input id='i' type="text" autofocus autocomplete="off">
+		</form>
+		<div id='write'></div>
+		<div id='big'></div>
+	</body>
+</html>
