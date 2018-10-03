@@ -8,7 +8,7 @@
 		<script>
 			$(document).ready(() => {
 				$("#i").focus().val("").on("input", () => $("#write").text($("#i").val()));
-				$(window).on("click", () => $("#i").focus());
+				$(window).on("click touchstart", () => $("#i").focus());
 				$("form").submit((e) => {
 					e.preventDefault();
 					$.ajax({
