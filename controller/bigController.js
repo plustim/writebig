@@ -11,7 +11,7 @@ router.get("/", function(req, res){
 router.post("/try", function(req, res) {
 	Word.findOneAndUpdate({key :req.body.key}, {$inc : {'hits' : 1}})
 		.then((model) => {
-			res.json(model.action);
+			res.json({id: model._id, do: model.action});
 		})
 		.catch(err => res.status(422).json(err));
 });
